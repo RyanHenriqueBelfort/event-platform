@@ -3,41 +3,16 @@ import { CaretRight, DiscordLogo, FileArrowDown, Image, Lightning } from "phosph
 
 import '@vime/core/themes/default.css'
 import { gql, useQuery } from "@apollo/client"
+import { useGetLessonBySlugQuery } from "../graphql/generated"
 
-const GET_LESSON_BY_SLUG = gql`
-  query GetLessonBySlug ($slug: String) {
-  lesson(where: {slug: $slug}) {
-    description
-    title
-    videoId
-    teacher {
-      avatarURL
-      bio
-      name
-    }
-  }
-}
-`
 
-interface GetLessonByString {
-  lesson: {
-    title: string;
-    videoId: string;
-    description: string;
-    teacher: {
-      bio: string;
-      avatarURL: string;
-      name: string;
-    }
-  }
-}
 
 interface VideoProps {
   lessonSlug: string
 }
 
 export const Video = (props: VideoProps) => {
-  const {data, loading } = useQuery<GetLessonByString>(GET_LESSON_BY_SLUG, {
+  const {data} = useGetLessonBySlugQuery({
     variables: {
       slug: props.lessonSlug
     },
@@ -46,7 +21,7 @@ export const Video = (props: VideoProps) => {
 
   console.log(data)
 
-  if(!data) {
+  if(!data || !data.lesson) {
     return (
       <div className="flex-1">
         <p>Carregando...</p>
@@ -75,18 +50,20 @@ export const Video = (props: VideoProps) => {
               {data.lesson.description}
             </p>
 
-            <div className="flex items-center gap-4 mt-6">
+            {data.lesson.teacher && (
+              <div className="flex items-center gap-4 mt-6">
               <img
                 className="h-16 w-16 rounded-full border-2 border-blue-500"
                 src={data.lesson.teacher.avatarURL}
                 alt=""
-              />
+              />  
 
               <div>
                 <strong className="font-bold text-2xl block">{data.lesson.teacher.name}</strong>
                 <span className="text-gray-200 text-sm block">{data.lesson.teacher.bio}</span>
               </div>
             </div>
+            )}
           </div>
 
           <div className="flex flex-col gap-4">
