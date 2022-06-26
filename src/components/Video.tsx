@@ -1,25 +1,29 @@
 import { DefaultUi, Player, Youtube } from "@vime/react"
-import { CaretRight, DiscordLogo, FileArrowDown, Image, Lightning } from "phosphor-react"
+import { CaretRight, DiscordLogo, FileArrowDown, Image, Lightning, YoutubeLogo } from "phosphor-react"
+
+import pdf from '../assets/react-beginners-handbook.pdf'
 
 import '@vime/core/themes/default.css'
 import { gql, useQuery } from "@apollo/client"
 import { useGetLessonBySlugQuery } from "../graphql/generated"
 
-
+import { useVideoId } from '../hook/useVideoId'
 
 interface VideoProps {
   lessonSlug: string
 }
 
+
 export const Video = (props: VideoProps) => {
+  const videoId = useVideoId()
+  console.log(videoId)
+
   const {data} = useGetLessonBySlugQuery({
     variables: {
       slug: props.lessonSlug
     },
     fetchPolicy: 'no-cache'
   })
-
-  console.log(data)
 
   if(!data || !data.lesson) {
     return (
@@ -67,21 +71,21 @@ export const Video = (props: VideoProps) => {
           </div>
 
           <div className="flex flex-col gap-4">
-            <a href="#" className="p-4 text-sm bg-green-500 flex items-center rounded font bold uppercase gap-2 justify-center hover:bg-green-700 transition-colors">
+            <a href="https://discord.gg/vjEucRtK" target={"_blank"} className="p-4 text-sm bg-project-100 flex items-center rounded font bold uppercase gap-2 justify-center hover:bg-purple-700 transition-colors">
               <DiscordLogo size={24} />
               Comunidade do Discord
             </a>
 
-            <a href="#" className="p-4 text-sm border bo flex border-blue-500 text-blue-500 items-center rounded font bold uppercase gap-2 justify-center hover:bg-blue-500 hover:text-gray-500 transition-colors">
-              <Lightning size={24} />
-              Acesse o desafio
+            <a href={`https://www.youtube.com/watch?v=${data.lesson.videoId}`} target="_blank" className=" group p-4 text-sm border bo flex border-red-600 text-zinc-100 items-center rounded font bold uppercase gap-2 justify-center hover:bg-red-600 hover:text-zinc-100 transition-colors">
+              <YoutubeLogo  size={24} fill='true' className="text-red-600 group-hover:text-zinc-100"/>
+              Acesse o o link do video
             </a>
           </div>
         </div>
         <div>
           <div className="gap-8 mt-20 grid grid-cols-2">
-            <a href="" className="bg-gray-700 rounded overflow-hidden flex items-stretch gap-6 hover:bg-slate-600 transition-colors">
-              <div className="bg-green-700 h-full p-6 flex items-center">
+            <a href={pdf} download={'react-beginners-handbook.pdf'} type={'application/pdf'} target="_blank" className="bg-gray-700 rounded overflow-hidden flex items-stretch gap-6 hover:bg-slate-600 transition-colors">
+              <div className="bg-project-100 h-full p-6 flex items-center">
                 <FileArrowDown size={40} />
               </div>
               <div className="py-6 leading-relaxed">
@@ -89,7 +93,7 @@ export const Video = (props: VideoProps) => {
                   Material complementar
                 </strong>
                 <p className="text-sm text-gray-200 mt-2">
-                  Acesse o material complementar para acelerar o seu desenvolvimento
+                  Acesse o PDF para acelerar o seu desenvolvimento
                 </p>
               </div>
               <div className="h-full p-6 flex items-center">
@@ -97,16 +101,17 @@ export const Video = (props: VideoProps) => {
               </div>
             </a>
 
-            <a href="" className="bg-gray-700 rounded overflow-hidden flex items-stretch gap-6 hover:bg-slate-600 transition-colors">
-              <div className="bg-green-700 h-full p-6 flex items-center">
+            <a href="https://dev.to/javinpaul/10-best-websites-to-learn-reactjs-in-2022-1o6d" target={"_blank"} className="bg-gray-700 rounded overflow-hidden flex items-stretch gap-6 hover:bg-slate-600 transition-colors">
+              <div className="bg-project-100 h-full p-6 flex items-center">
                 <Image size={40} />
               </div>
               <div className="py-6 leading-relaxed">
                 <strong className="text-2xl">
-                  wallpapers exclusivos
+                  Como aprender React?
                 </strong>
                 <p className="text-sm text-gray-200 mt-2">
-                  Baixe wallpapers exclusivos do Ignite Lab e personalize a sua máquina
+                  Aqui tem uma lista completa onde voce pode aprender essa tão poderosa
+                  Ferramenta de desenvolvimento, React <span className="text-base">⚛️</span>
                 </p>
               </div>
               <div className="h-full p-6 flex items-center">

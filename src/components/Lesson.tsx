@@ -26,10 +26,10 @@ export const Lesson = (props: LessonProps) => {
         {availableDateFormatted}
       </span>
 
-      <div className={`rounded border border-gray-500 p-4 mt-2 group-hover:border-green-500 ${isActiveLesson? "bg-green-500": ""}`}>
+      <div className={`rounded border border-gray-500 p-4 mt-2 group-hover:border-project-200 ${isActiveLesson? "bg-project-700": ""}`}>
         <header className="flex items-center justify-between">
           {isLessonAvailable ? (
-            <span className="text-sm text-blue-500 font-medium flex items-center gap-2">
+            <span className="text-sm text-green-400 font-medium flex items-center gap-2">
               <CheckCircle size={20} />
               Conteudo liberado
             </span>
@@ -39,7 +39,8 @@ export const Lesson = (props: LessonProps) => {
               Em breve
             </span>)
           }
-          <span className="text-xs rounded py-[0.125rem] px-2 text-white border border-green-300 font-bold">
+
+          <span className={`text-xs rounded py-[0.125rem] px-2 text-white border font-bold ${props.type === 'live' ? 'border-red-600' : 'border-green-400'}`}>
             {props.type === 'live' ? 'AO VIVO' : 'AULA PRATICA'}
           </span>
         </header>

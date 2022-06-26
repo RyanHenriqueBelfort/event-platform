@@ -12,6 +12,15 @@ module.exports = {
         sans: 'Roboto, sans-serif'
       },
       colors: {
+        project: {
+          100: '#5b1d99',
+          200: '#0074b4',
+          300: '#00b34c',
+          400: '#ffd41f',
+          500: '#fc6e3d',
+          600: '#1c0b2b',
+          700: '#005582'
+        },
         green: {
           300: '#00B37E',
           500: '#00875F',
