@@ -1,5 +1,5 @@
 import { DefaultUi, Player, Youtube } from "@vime/react"
-import { CaretRight, DiscordLogo, FileArrowDown, Image, Lightning, YoutubeLogo } from "phosphor-react"
+import { CaretRight, DiscordLogo, FileArrowDown, Image, Lightning, YoutubeLogo, Atom} from "phosphor-react"
 
 import pdf from '../assets/react-beginners-handbook.pdf'
 
@@ -103,7 +103,7 @@ export const Video = (props: VideoProps) => {
 
             <a href="https://dev.to/javinpaul/10-best-websites-to-learn-reactjs-in-2022-1o6d" target={"_blank"} className="bg-gray-700 rounded overflow-hidden flex items-stretch gap-6 hover:bg-slate-600 transition-colors">
               <div className="bg-project-100 h-full p-6 flex items-center">
-                <Image size={40} />
+                <Atom size={40} />
               </div>
               <div className="py-6 leading-relaxed">
                 <strong className="text-2xl">
