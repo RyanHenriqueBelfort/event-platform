@@ -1,4 +1,5 @@
 import { useParams } from "react-router-dom"
+import { Footer } from "../components/Footer"
 import { Header } from "../components/Header"
 import { Sidebar } from "../components/Sidebar"
 import { Video } from "../components/Video"
@@ -12,7 +13,8 @@ export const Event = () =>{
         <Sidebar />
         { slug ? 
         <Video  lessonSlug={slug}/> : 
-        <div className="flex-1" />}
+        <div className="flex-1" />
+        }
       </main>
     </div>
   )

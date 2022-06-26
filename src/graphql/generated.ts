@@ -5588,6 +5588,11 @@ export type GetLessonsQueryVariables = Exact<{ [key: string]: never; }>;
 
 export type GetLessonsQuery = { __typename?: 'Query', lessons: Array<{ __typename?: 'Lesson', title: string, availableAt?: any | null, slug: string, id: string, lessonType: LessonType }> };
 
+export type MyQueryQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type MyQueryQuery = { __typename?: 'Query', subscribers: Array<{ __typename?: 'Subscriber', name: string, id: string }> };
+
 
 export const CreateSubscriberDocument = gql`
     mutation CreateSubscriber($name: String!, $email: String!) {
@@ -5703,3 +5708,38 @@ export function useGetLessonsLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions
 export type GetLessonsQueryHookResult = ReturnType<typeof useGetLessonsQuery>;
 export type GetLessonsLazyQueryHookResult = ReturnType<typeof useGetLessonsLazyQuery>;
 export type GetLessonsQueryResult = Apollo.QueryResult<GetLessonsQuery, GetLessonsQueryVariables>;
+export const MyQueryDocument = gql`
+    query MyQuery {
+  subscribers(stage: DRAFT) {
+    name
+    id
+  }
+}
+    `;
+
+/**
+ * __useMyQueryQuery__
+ *
+ * To run a query within a React component, call `useMyQueryQuery` and pass it any options that fit your needs.
+ * When your component renders, `useMyQueryQuery` returns an object from Apollo Client that contains loading, error, and data properties
+ * you can use to render your UI.
+ *
+ * @param baseOptions options that will be passed into the query, supported options are listed on: https://www.apollographql.com/docs/react/api/react-hooks/#options;
+ *
+ * @example
+ * const { data, loading, error } = useMyQueryQuery({
+ *   variables: {
+ *   },
+ * });
+ */
+export function useMyQueryQuery(baseOptions?: Apollo.QueryHookOptions<MyQueryQuery, MyQueryQueryVariables>) {
+        const options = {...defaultOptions, ...baseOptions}
+        return Apollo.useQuery<MyQueryQuery, MyQueryQueryVariables>(MyQueryDocument, options);
+      }
+export function useMyQueryLazyQuery(baseOptions?: Apollo.LazyQueryHookOptions<MyQueryQuery, MyQueryQueryVariables>) {
+          const options = {...defaultOptions, ...baseOptions}
+          return Apollo.useLazyQuery<MyQueryQuery, MyQueryQueryVariables>(MyQueryDocument, options);
+        }
+export type MyQueryQueryHookResult = ReturnType<typeof useMyQueryQuery>;
+export type MyQueryLazyQueryHookResult = ReturnType<typeof useMyQueryLazyQuery>;
+export type MyQueryQueryResult = Apollo.QueryResult<MyQueryQuery, MyQueryQueryVariables>;

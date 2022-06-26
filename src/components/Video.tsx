@@ -4,10 +4,10 @@ import { CaretRight, DiscordLogo, FileArrowDown, Image, Lightning, YoutubeLogo, 
 import pdf from '../assets/react-beginners-handbook.pdf'
 
 import '@vime/core/themes/default.css'
-import { gql, useQuery } from "@apollo/client"
 import { useGetLessonBySlugQuery } from "../graphql/generated"
 
 import { useVideoId } from '../hook/useVideoId'
+import { Footer } from "./Footer"
 
 interface VideoProps {
   lessonSlug: string
@@ -16,7 +16,6 @@ interface VideoProps {
 
 export const Video = (props: VideoProps) => {
   const videoId = useVideoId()
-  console.log(videoId)
 
   const {data} = useGetLessonBySlugQuery({
     variables: {
@@ -121,6 +120,7 @@ export const Video = (props: VideoProps) => {
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   )
 }
