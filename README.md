@@ -17,4 +17,10 @@ O Event|ON é uma plataforma de eventos onde o usuario pelo Graphcms pode inseri
 <li>Conhcimento mais aprofundado no Tailwind 
 <li>Generics em TypeScript
 
+ 
+## Imagens
+  
+<img src="https://user-images.githubusercontent.com/70604408/175796368-171de03a-4bd0-4afb-97e8-7eab9c8b4332.png" width="450px">
+
+
 
