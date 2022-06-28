@@ -31,10 +31,10 @@ export function Subscribe() {
             <Logo />
           </div>
 
-          <h1 className="mt-8 text-lg md:text-[2.5rem] leading-tight text-center">
+          <h1 className="mt-8 text-lg md:text-[2.5rem] leading-tight text-center md:text-start">
             Guia de como <strong className="text-blue-500 text-2xl md:text-5xl">React funciona</strong>, partindo do total do <strong className="text-blue-500 text-2xl md:text-5xl" >zero</strong>
           </h1>
-          <p className="mt-4 mb-4 text-gray-200 leading-relaxed text-xs md:text-xl text-center">
+          <p className="mt-4 mb-4 text-gray-200 leading-relaxed text-xs md:text-xl text-center md:text-start">
             Alguns matérias para voce entender de vez por todas de como uma das 
             tecnologias mais demandada do mercado e todo seu universo funciona.
             Através de conteúdos gratuitos pela internet.
