@@ -11,6 +11,10 @@ module.exports = {
       fontFamily: {
         sans: 'Roboto, sans-serif'
       },
+      screens: {
+        '345': '365px',
+        '425': '425px'
+      },
       colors: {
         project: {
           100: '#5b1d99',

@@ -1,15 +1,21 @@
 import { useState, FormEvent} from "react";
 import { useNavigate } from "react-router-dom";
 import { Logo } from "../components/Logo";
-import { useCreateSubscriberMutation } from "../graphql/generated"
+import { useCreateSubscriberMutation, useGetLessonBySlugQuery, useGetLessonsQuery } from "../graphql/generated"
+
+// interface VideoProps {
+//   lessonSlug: string
+// }
 
 export function Subscribe() {
   const navigate = useNavigate()
 
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
-
+  const {data} = useGetLessonsQuery()
   const [createSubscriber, {loading}] = useCreateSubscriberMutation()
+
+  const firstSlug = (data?.lessons[0].slug)
 
   async function handleSubscribe(event: FormEvent){
     event.preventDefault()
@@ -20,21 +26,21 @@ export function Subscribe() {
         email,
       }
     })
-    navigate('/event')
+    navigate(`/event/lesson/${firstSlug}`)
   }
 
   return(
     <div className="min-h-screen bg-blur bg-cover flex flex-col items-center">
       <div className="pl-1 w-full max-w-[1100px] flex flex-col md:flex-row justify-between items-center mt-20 mx-auto">
         <div className="max-w-[640px]">
-          <div className="flex justify-center md:justify-start">
+          <div className="flex md:justify-start">
             <Logo />
           </div>
 
-          <h1 className="mt-8 text-lg md:text-[2.5rem] leading-tight text-center md:text-start">
+          <h1 className="mt-8 text-lg md:text-[2.5rem] leading-tight">
             Guia de como <strong className="text-blue-500 text-2xl md:text-5xl">React funciona</strong>, partindo do total do <strong className="text-blue-500 text-2xl md:text-5xl" >zero</strong>
           </h1>
-          <p className="mt-4 mb-4 text-gray-200 leading-relaxed text-xs md:text-xl text-center md:text-start">
+          <p className="mt-4 mb-4 text-gray-200 leading-relaxed text-xs md:text-xl">
             Alguns matérias para voce entender de vez por todas de como uma das 
             tecnologias mais demandada do mercado e todo seu universo funciona.
             Através de conteúdos gratuitos pela internet.
