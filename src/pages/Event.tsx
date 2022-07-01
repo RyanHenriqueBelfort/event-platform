@@ -7,7 +7,7 @@ import { Video } from "../components/Video"
 
 export const Event = () =>{
   const { slug } = useParams<{slug: string}>()
-  const [modalIsOpen, setIsOpen] = useState(true)
+  const [modalIsOpen, setIsOpen] = useState(false)
 
   
   return(

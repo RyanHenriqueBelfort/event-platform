@@ -27,7 +27,7 @@ export const Lesson = (props: LessonProps) => {
         {availableDateFormatted}
       </span>
 
-      <div className={`rounded border w-full border-gray-500 px-2 md:p-4 md:mt-2 group-hover:border-project-200 ${isActiveLesson? "bg-project-700": ""}`}>
+      <div className={`rounded border w-full border-gray-500 px-2 py-6 md:p-4 md:mt-2 group-hover:border-project-200 ${isActiveLesson? "bg-project-700": ""}`}>
         <header className="flex items-center justify-between">
           {isLessonAvailable ? (
             <span className="text-xs md:text-sm text-green-400 font-medium flex items-center gap-2">

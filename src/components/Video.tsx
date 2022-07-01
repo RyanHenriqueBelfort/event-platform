@@ -48,9 +48,11 @@ export const Video = (props: VideoProps) => {
       </div>
     
       <div className="p-8 max-w-[1100px] mx-auto relative">
+
         <div className="absolute top-1 md:static mb-5">
           <button className="bg-red-600 px-1 md:text-xl rounded" onClick={() => props.setModal(true)}>Listar aulas</button>
         </div>
+        
         <div className="flex items-start gap-16 flex-col md:flex-row">
           <div className="flex-1" >
             <h1 className="text-1xl md:text-2xl font-bold">
