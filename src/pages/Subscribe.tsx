@@ -3,10 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { Logo } from "../components/Logo";
 import { useCreateSubscriberMutation, useGetLessonBySlugQuery, useGetLessonsQuery } from "../graphql/generated"
 
-// interface VideoProps {
-//   lessonSlug: string
-// }
-
 export function Subscribe() {
   const navigate = useNavigate()
 

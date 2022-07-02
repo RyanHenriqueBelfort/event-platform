@@ -1,24 +1,16 @@
 import { DefaultUi, Player, Youtube } from "@vime/react"
 import { CaretRight, DiscordLogo, FileArrowDown, Image, Lightning, YoutubeLogo, Atom} from "phosphor-react"
 import Modal from 'react-modal'
-
 import pdf from '../assets/react-beginners-handbook.pdf'
-
 import '@vime/core/themes/default.css'
 import { useGetLessonBySlugQuery } from "../graphql/generated"
-
-
 import { Footer } from "./Footer"
-import { Sidebar } from "./Sidebar"
-import { useState } from "react"
 
 interface VideoProps {
-  lessonSlug: string
+  lessonSlug: string | undefined
   setModal: Function 
+  modal: boolean
 }
-
-Modal.setAppElement('#root')
-
 export const Video = (props: VideoProps) => {
  
   const {data} = useGetLessonBySlugQuery({
@@ -47,13 +39,21 @@ export const Video = (props: VideoProps) => {
         </div>
       </div>
     
-      <div className="p-8 max-w-[1100px] mx-auto relative">
+      {props.modal && window.innerWidth <= 763 ?
+        <div className="p-8 max-w-[1100px] mx-auto relative">
+          <div className="absolute top-1 md:static mb-5">
+            <button className="transition ease-in-out delay-150 hover:scale-110 hover:bg-green-800 bg-green-600 px-1 md:text-xl rounded" onClick={() => props.setModal(true)}>Listar aulas</button>
+          </div>
+        </div> 
 
+        :
+      
+      <div className="p-8 max-w-[1100px] mx-auto relative">
         <div className="absolute top-1 md:static mb-5">
-          <button className="bg-red-600 px-1 md:text-xl rounded" onClick={() => props.setModal(true)}>Listar aulas</button>
+          <button className="transition ease-in-out delay-150 hover:scale-110 hover:bg-green-800 bg-green-600 px-1 md:text-xl rounded" onClick={() => props.setModal(true)}>Listar aulas</button>
         </div>
         
-        <div className="flex items-start gap-16 flex-col md:flex-row">
+        <div className="flex items-start gap-16 flex-col md:flex-col lg:flex-row">
           <div className="flex-1" >
             <h1 className="text-1xl md:text-2xl font-bold">
               {data.lesson.title}
@@ -78,13 +78,13 @@ export const Video = (props: VideoProps) => {
             )}
           </div>
 
-          <div className="flex flex-col gap-4">
+          <div className="flex flex-col gap-4 items-start">
             <a href="https://discord.gg/vjEucRtK" target={"_blank"} className="p-2 md:p-4 text-xs md:text-sm bg-project-100 flex items-center rounded uppercase gap-2 justify-center hover:bg-purple-700 transition-colors">
               <DiscordLogo size={24} />
               Comunidade do Discord
             </a>
 
-            <a href={`https://www.youtube.com/watch?v=${data.lesson.videoId}`} target="_blank" className=" group p-2 md:p-4 text-xs md:text-sm border bo flex border-red-600 text-zinc-100 items-center rounded font bold uppercase gap-2 justify-center hover:bg-red-600 hover:text-zinc-100 transition-colors">
+            <a href={`https://www.youtube.com/watch?v=${data.lesson.videoId}`} target="_blank" className="group p-2 md:p-4 text-xs md:text-sm border bo flex border-red-600 text-zinc-100 items-center rounded font bold uppercase gap-2 justify-center hover:bg-red-600 hover:text-zinc-100 transition-colors">
               <YoutubeLogo  size={24} fill='true' className="text-red-600 group-hover:text-zinc-100"/>
               Acesse o o link do video
             </a>
@@ -92,11 +92,11 @@ export const Video = (props: VideoProps) => {
         </div>
         <div>
           <div className="gap-4 md:gap-8 mt-20 grid grid-cols-2">
-            <a href={pdf} download={'react-beginners-handbook.pdf'} type={'application/pdf'} target="_blank" className="col-span-2 md:col-span-1 bg-gray-700 rounded overflow-hidden flex items-stretch gap-6 hover:bg-slate-600 transition-colors">
+            <a href={pdf} download={'react-beginners-handbook.pdf'} type={'application/pdf'} target="_blank" className="col-span-2 lg:col-span-1 bg-gray-700 rounded overflow-hidden flex items-stretch gap-6 hover:bg-slate-600 transition-colors">
               <div className="bg-project-100 h-32 md:h-full p-4 md:p-6 flex items-center">
                 <FileArrowDown size={40} />
               </div>
-              <div className="py-1 md:py-6 leading-3 md:leading-relaxed">
+              <div className="py-1 md:py-6 w-full leading-3 md:leading-relaxed">
                 <strong className="text-xs md:text-2xl">
                   Material complementar
                 </strong>
@@ -104,16 +104,16 @@ export const Video = (props: VideoProps) => {
                   Acesse o PDF para acelerar o seu desenvolvimento
                 </p>
               </div>
-              <div className="h-full p-6 flex items-center">
+              <div className="h-full p-2 flex items-center">
                 <CaretRight size={24} />
               </div>
             </a>
 
-            <a href="https://dev.to/javinpaul/10-best-websites-to-learn-reactjs-in-2022-1o6d" target={"_blank"} className="col-span-2 md:col-span-1 bg-gray-700 rounded overflow-hidden flex items-stretch gap-2 md:gap-6 hover:bg-slate-600 transition-colors">
+            <a href="https://dev.to/javinpaul/10-best-websites-to-learn-reactjs-in-2022-1o6d" target={"_blank"} className="col-span-2 lg:col-span-1 bg-gray-700 rounded overflow-hidden flex items-stretch gap-2 md:gap-6 hover:bg-slate-600 transition-colors">
               <div className="bg-project-100 h-full md:h-full p-4 md:p-6 flex items-center">
                 <Atom size={40} />
               </div>
-              <div className="py-1 md:py-6 leading-3 md:leading-relaxed">
+              <div className="py-1 w-full md:py-6 leading-3 md:leading-relaxed">
                 <strong className="text-sm md:text-2xl">
                   Como aprender React?
                 </strong>
@@ -129,6 +129,7 @@ export const Video = (props: VideoProps) => {
           </div>
         </div>
       </div> 
+    }
        <Footer />
     </div>
   )
