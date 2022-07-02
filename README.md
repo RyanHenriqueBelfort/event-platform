@@ -23,4 +23,4 @@ O Event|ON é uma plataforma de eventos onde o usuario pelo Graphcms pode inseri
 <img src="https://user-images.githubusercontent.com/70604408/175796368-171de03a-4bd0-4afb-97e8-7eab9c8b4332.png" width="450px"><br><br>
 <img src="https://user-images.githubusercontent.com/70604408/175796369-8a851e6b-eebb-4d58-a574-efe4abc7d1e1.png" width="450px"><br><br>
 <img src="https://user-images.githubusercontent.com/70604408/175796699-466c2948-7975-47c7-93ef-db2f7ba6d0e8.png" width="450px">
-
+<img src="https://user-images.githubusercontent.com/70604408/176987940-0f1b9b01-6aa4-40f5-9b3e-29d2b2d3b20b.gif" width="450px">
