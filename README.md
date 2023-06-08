@@ -14,8 +14,8 @@ O Event|ON é uma plataforma de eventos onde o usuario pelo Graphcms pode inseri
 ## O que eu aprendi fazendo esse projeto
 
 <li>Como o Graphql funciona juntamento com Graphcms e Apollo como as queries e mutations. <br>
-<li>Conhcimento mais aprofundado no Tailwind 
-<li>Generics em TypeScript
+<li>Conhcimento mais aprofundado no Tailwind.
+<li>Generics em TypeScript.
 
  
 ## Imagens
